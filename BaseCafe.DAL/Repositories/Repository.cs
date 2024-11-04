@@ -1,5 +1,6 @@
 ﻿using BaseCafe.DAL.Context;
-using BaseCafe.DAL.Entities;
+using BaseCafe.DAL.Entities.Abstract;
+using BaseCafe.DAL.Entities.Enum;
 using BaseCafe.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BaseCafe.DAL.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : BaseEntity, new()
+    public abstract class Repository<T> : IRepository<T> where T : BaseEntity, new()
     {
         private readonly MyDbContext _context;
 

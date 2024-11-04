@@ -1,4 +1,4 @@
-﻿using BaseCafe.DAL.Entities;
+﻿using BaseCafe.DAL.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

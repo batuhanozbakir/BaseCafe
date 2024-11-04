@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BaseCafe.DAL.Entities.Enum;
 
-namespace BaseCafe.DAL.Entities
+namespace BaseCafe.DAL.Entities.Abstract
 {
     public abstract class BaseEntity
     {
