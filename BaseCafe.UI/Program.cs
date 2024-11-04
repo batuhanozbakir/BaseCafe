@@ -1,3 +1,5 @@
+using BaseCafe.BLL.Managers.Abstract;
+using BaseCafe.BLL.Managers.Concrete;
 using BaseCafe.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDalService();
+builder.Services.AddScoped(typeof(IGenericManager<,>) , typeof(GenericManager<,>));
 
 var app = builder.Build();
 
