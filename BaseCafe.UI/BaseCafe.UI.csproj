@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseCafe.BLL\BaseCafe.BLL.csproj" />
+    <ProjectReference Include="..\BaseCafe.DAL\BaseCafe.DAL.csproj" />
   </ItemGroup>
 
 </Project>
