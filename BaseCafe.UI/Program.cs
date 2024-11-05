@@ -1,6 +1,6 @@
 using BaseCafe.BLL.Managers.Abstract;
 using BaseCafe.BLL.Managers.Concrete;
-using BaseCafe.DAL;
+using BaseCafe.DAL.ServiceRegistration;
 
 var builder = WebApplication.CreateBuilder(args);
 

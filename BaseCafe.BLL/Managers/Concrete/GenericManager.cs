@@ -15,12 +15,12 @@ namespace BaseCafe.BLL.Managers.Concrete
     /// DTO ve entity üzerinde işlemlerin gerçekleştiği sınıf
     /// </summary>
     /// <param name="reposityory"></param>
-    public abstract class GenericManager<TDTO, TEntity> : IGenericManager<TDTO, TEntity> where TEntity : BaseEntity, new() where TDTO : class
+    public  class GenericManager<TDTO, TEntity> : IGenericManager<TDTO, TEntity> where TEntity : BaseEntity, new() where TDTO : class
     {
         private readonly IMapper _mapper;
         private readonly IRepository<TEntity> _repository;
        
-        protected GenericManager(IRepository<TEntity> reposityory)
+        public GenericManager(IRepository<TEntity> reposityory)
         {
             var config = new MapperConfiguration(cfg =>cfg.CreateMap<TDTO, TEntity>().ReverseMap());
             _mapper = new Mapper(config);

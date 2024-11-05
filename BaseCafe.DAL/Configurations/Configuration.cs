@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseCafe.DAL
+namespace BaseCafe.DAL.Configurations
 {
     public static class Configuration
     {

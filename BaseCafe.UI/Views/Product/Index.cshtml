@@ -1,0 +1,40 @@
+﻿@using BaseCafe.BLL.DTOs
+@model IEnumerable<dynamic>
+
+<h2>Products</h2>
+<a asp-action="Create" class="btn btn-primary">New Category Add</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>CategoryId</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Description</th>
+			<th>StockQuantity</th>
+			<th>categoryName</th>
+			<th>Delete</th>
+			<th>Update</th>
+		</tr>
+
+	</thead>
+	<tbody>
+
+		@foreach (var product in Model)
+
+		{
+			<tr>
+				<td>@product.Id</td>
+				<td>@product.CategoryID</td>
+				<td>@product.Name</td>
+				<td>@product.Price</td>
+				<td>@product.Description</td>
+				<td>@product.StockQuantity</td>
+				<td>@product.categoryName</td>
+				<td><a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete Category</a></td>
+				<td><a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning">Update Category</a></td>
+			</tr>
+
+		}
+	</tbody>
+</table>

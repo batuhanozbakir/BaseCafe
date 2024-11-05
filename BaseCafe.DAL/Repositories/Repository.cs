@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BaseCafe.DAL.Repositories
 {
-    public abstract class Repository<T> : IRepository<T> where T : BaseEntity, new()
+    public  class Repository<T> : IRepository<T> where T : BaseEntity, new()
     {
         private readonly MyDbContext _context;
 

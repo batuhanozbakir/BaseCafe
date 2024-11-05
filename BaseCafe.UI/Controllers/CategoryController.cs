@@ -20,5 +20,40 @@ namespace BaseCafe.UI.Controllers
             var categories = _categoryManager.GetAll();
             return View(categories);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(CategoryDTO categoryDTO)
+        {
+            _categoryManager.Add(categoryDTO);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var category = _categoryManager.Find(id);
+            return View(category);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(CategoryDTO categoryDTO)
+        {
+            _categoryManager.Update(categoryDTO);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(CategoryDTO categoryDTO)
+        {
+            _categoryManager.Remove(categoryDTO);
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
