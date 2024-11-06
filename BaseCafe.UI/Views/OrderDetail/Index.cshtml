@@ -1,0 +1,59 @@
+﻿@using BaseCafe.BLL.DTOs
+
+@model IEnumerable<dynamic>
+
+<h2>Order Details</h2>
+<a asp-action="Create" class="btn btn-primary">New Product Add</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>OrderDate</td>
+            <td>TotalAmount</td>
+            <td>Status</td>
+            <td>Details</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var order in Model)
+
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.OrderDate.ToString("g")</td>
+                <td>@order.TotalAmount</td>
+                <td>@order.Status</td>
+                <td>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <td>Ürün ID</td>
+                                <td>Ürün Adı</td>
+                                <td>Ürün Miktarı</td>
+                                <td>Birim Fiyatı</td>
+                                <td>Kategori</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var detail in order.OrderDetails)
+
+                            {
+                                <tr>
+                                    <td>@detail.ProductId</td>
+                                    <td>@detail.ProductName</td>
+                                    <td>@detail.Quantity</td>
+                                    <td>@detail.UnitPrice</td>
+                                    <td>@detail.CategoryName</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
