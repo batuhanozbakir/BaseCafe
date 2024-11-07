@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace BaseCafe.BLL.DTOs
 {
-    public record CardDTO(int Id, int ProductId, int Quantity);
+    public record CartDTO(int Id, int ProductId, int Quantity);
 
 }

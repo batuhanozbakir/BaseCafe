@@ -30,8 +30,9 @@ namespace BaseCafe.BLL.Managers.Concrete
         public TDTO Add(TDTO dTO)
         {
             TEntity entity = _mapper.Map<TEntity>(dTO);
-            _repository.Add(entity);
-            return dTO;
+            var newEntity = _repository.Add(entity);
+            TDTO newDTO = _mapper.Map<TDTO>(newEntity);
+            return newDTO;
         }
         /// <summary>
         /// bir liste halinde DTo nesnelerini ekler ve eklenen listeyi döner

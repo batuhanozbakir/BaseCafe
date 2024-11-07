@@ -38,9 +38,10 @@ namespace BaseCafe.DAL.Repositories
         {
             entity.Status = DataStatus.Created;
             entity.CreatedDate = DateTime.Now;
-            Table.Add(entity);
+            var addedEntity = Table.Add(entity);
             Save();
-            return entity;
+            var newEntity = addedEntity.Entity;
+            return newEntity;
         }
 
         /// <summary>
