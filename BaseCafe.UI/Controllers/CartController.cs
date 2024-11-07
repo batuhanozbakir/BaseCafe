@@ -1,10 +1,13 @@
 ﻿using BaseCafe.BLL.DTOs;
 using BaseCafe.BLL.Managers.Abstract;
 using BaseCafe.DAL.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BaseCafe.UI.Controllers
 {
+    [Authorize("Customer")]
     public class CartController : Controller
     {
         private readonly IGenericManager<ProductDTO, Product> _productManager;
@@ -54,12 +57,13 @@ namespace BaseCafe.UI.Controllers
             { 
                 return BadRequest("Cart is null");
             }
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             //sepetteki toplam tutar
             var totalAmount = cart.Sum(item => item.Quantity* _productManager.Find(item.ProductId).Price);
 
             //yeni sipariş oluştur
-            var newOrder = new OrderDTO(0,DateTime.Now,totalAmount,"Created");
+            var newOrder = new OrderDTO(0,DateTime.Now,totalAmount,"Created",userId);
 
             //sipariş ekle
             var createdOrder = _orderManager.Add(newOrder);

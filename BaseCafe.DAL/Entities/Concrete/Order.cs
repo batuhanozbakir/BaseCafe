@@ -14,6 +14,8 @@ namespace BaseCafe.DAL.Entities.Concrete
         public string Status { get; set; }
 
         public ICollection<OrderDetail> OrderDetails { get; set; }
+        public string? AppUserId { get; set; }
+        public AppUser? AppUser { get; set; }
 
     }
 }
