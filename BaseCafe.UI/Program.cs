@@ -11,7 +11,9 @@ builder.Services.AddDalService();
 
 
 
-builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MyDbContext>();
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole<string>>()
+    .AddEntityFrameworkStores<MyDbContext>();
 
 
 builder.Services.AddAuthorization(options =>

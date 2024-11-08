@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using BaseCafe.DAL.Mail;
 
 namespace BaseCafe.UI.Areas.Identity.Pages.Account
 {
@@ -20,11 +21,15 @@ namespace BaseCafe.UI.Areas.Identity.Pages.Account
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmailSender _sender;
+        private readonly IMailService _mailService;
 
-        public RegisterConfirmationModel(UserManager<AppUser> userManager, IEmailSender sender)
+
+
+        public RegisterConfirmationModel(UserManager<AppUser> userManager, IEmailSender sender, IMailService mailService)
         {
             _userManager = userManager;
             _sender = sender;
+            _mailService = mailService;
         }
 
         /// <summary>
@@ -67,6 +72,7 @@ namespace BaseCafe.UI.Areas.Identity.Pages.Account
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                await  _mailService.SendConfimationAsync(user,code);
                 EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,

@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace BaseCafe.UI.Controllers
 {
-    //[Authorize("Customer")]
+    
 
     public class CartController : Controller
 

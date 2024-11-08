@@ -1,4 +1,6 @@
-﻿using BaseCafe.DAL.Mail;
+﻿using BaseCafe.DAL.Entities.Concrete;
+using BaseCafe.DAL.Mail;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
 using System;
@@ -24,13 +26,23 @@ namespace BaseCoffee.DAL.Mail
     {
 
         private readonly IConfiguration _configuration;
+        private readonly UserManager<AppUser> _userManager;
 
-        public MailService(IConfiguration configuration)
+        public MailService(IConfiguration configuration, UserManager<AppUser> userManager)
 
         {
 
             _configuration = configuration;
+            _userManager = userManager;
+        }
 
+        public async Task SendConfimationAsync(AppUser user, string code)
+        {
+            var mailContent = new StringBuilder();
+            mailContent.Append(@$"Merhaba<b>{user.UserName}</b>,Uygulamamıza Hoşgeldin");
+            mailContent.Append("Giriş Yapmak için son bir adım kaldı .LÜtfen Mailinizi onaylayınız");
+            mailContent.AppendLine(@$"<a href='http://localhost:5102/home/deneme?email={user.Email}&code={code}'>Onayla</a>");
+            await SendMailAsync(user.Email, "Onaylama Işlemi", mailContent.ToString());
         }
 
         public async Task SendMailAsync(string to, string subject, string body, bool isHtml = true)
