@@ -1,7 +1,9 @@
 ﻿using BaseCafe.DAL.Configurations;
 using BaseCafe.DAL.Context;
+using BaseCafe.DAL.Mail;
 using BaseCafe.DAL.Repositories;
 using BaseCafe.UI;
+using BaseCoffee.DAL.Mail;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,6 +23,7 @@ namespace BaseCafe.DAL.ServiceRegistration
 
             services.AddDbContext<MyDbContext>(opt => opt.UseSqlServer(conn));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IMailService, MailService>();
         }
     }
 }

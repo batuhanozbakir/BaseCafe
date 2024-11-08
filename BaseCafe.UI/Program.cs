@@ -13,6 +13,13 @@ builder.Services.AddDalService();
 
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MyDbContext>();
 
+
+builder.Services.AddAuthorization(options =>
+{
+
+    options.AddPolicy("Customer", policy => policy.RequireRole("Customer"));
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
